@@ -1,0 +1,11 @@
+OM_azonosito;Nev;Email;Szuletesi_datum;Ertesitesi_cim;matek_eredmeny;magyar_eredmeny
+01234567890;Török Lilla;torok.lilla@email.com;1997-06-14;Hódmezővásárhely, Kossuth Lajos tér 5.;38;50
+12345678901;Szőke Balázs;szoke.balazs@email.com;1998-01-29;Zalaegerszeg, Szabó utca 23.;44;50
+23456789012;Balogh Attila;balogh.attila@email.com;1992-04-08;Veszprém, Ady Endre utca 14.;43;48
+34567890123;Király Eszter;kiraly.eszter@email.com;1994-09-17;Székesfehérvár, Szabadság tér 7.;50;NULL
+45678901234;Takács Ferenc;takacs.ferenc@email.com;1996-12-25;Szolnok, Kossuth utca 10.;37;42
+56789012345;Fehér Anita;feher.anita@email.com;1990-02-03;Tatabánya, Bajnai út 18.;NULL;49
+67890123456;Mészáros Tamás;meszaros.tamas@email.com;1993-05-20;Salgótarján, Rákóczi út 25.;50;35
+78901234567;Csonka Zoltán;csonka.zoltan@email.com;1995-08-12;Esztergom, Dózsa György út 9.;45;50
+89012345678;Lakatos Katalin;lakatos.katalin@email.com;1988-11-27;Keszthely, Fő tér 12.;49;46
+90123456789;Simon Gergő;simon.gergo@email.com;1991-03-04;Szeksárd, Béla út 7.;50;40

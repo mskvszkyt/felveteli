@@ -1,0 +1,17 @@
+Adatbázis neve: miniKozfelvir
+Tábla : Felvetelizok
+
+Mezők:
+(PK) OM azonosító - vchar(11) + index
+Név - vchar(40) + index
+Email - vchar(50)
+Születési dátum - Date
+Értesítési cím - vchar(120)
+matek eredmény - tinyint 8bites null
+magyar eredmény - tinyint 8bites null
+
+----
+Anyja neve
+Telefonszám
+
+
