@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:Felvetelizok"
         mc:Ignorable="d"
         Title="Felvetel" Height="450" Width="800">
-    <Border Background="DarkCyan">
-        <Grid>
+
+    <Grid>
+    <Viewbox Stretch="Uniform">
+        <Grid Background="DarkCyan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -25,7 +27,7 @@
                 </Border.Effect>
             </Border>
             <Label Content="OM Azonosító:" TabIndex="2" Margin="5"/>
-            <TextBox x:Name="tb_az" Margin="30"/>
+            <TextBox x:Name="tb_az" Margin="30" MaxLength="11" PreviewTextInput="tb_az_TextChanged"/>
 
             <Border Background="White" CornerRadius="7" Grid.Column="1" Grid.Row="0" Margin="5">
                 <Border.Effect>
@@ -86,7 +88,8 @@
                     <DropShadowEffect/>
                 </Border.Effect>
             </Border>
-            <Button x:Name="btn_hozzaad" Grid.Row="3" Grid.ColumnSpan="2" Margin="300 35" Content="Hozzáadás" FontSize="20" Click="btn_hozzaad_Click" Background="Transparent" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
-        </Grid>
-    </Border>
+            <Button x:Name="btn_hozzaad" Grid.Row="3" Grid.ColumnSpan="2" Margin="30" Content="Hozzáadás" FontSize="20" Click="btn_hozzaad_Click" Background="Transparent" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+        </Grid> 
+    </Viewbox>
+    </Grid>
 </Window>

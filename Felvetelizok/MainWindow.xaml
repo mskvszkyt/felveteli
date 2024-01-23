@@ -12,7 +12,7 @@
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <DataGrid x:Name="dgFelvetelizok" Margin="10"/>
+            <DataGrid x:Name="dgFelvetelizok" IsReadOnly="True" Margin="10"/>
         <Border Grid.Column="1" Background="DarkCyan"/>
         <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" Background="Transparent">
                 <Button x:Name="btnImport" Content="Importálás" Width="130" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnImport_Click"/>

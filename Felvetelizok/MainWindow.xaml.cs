@@ -35,7 +35,11 @@ namespace Felvetelizok
             {
                 foreach (string sor in File.ReadAllLines(ofd.FileName).Skip(1))
                 {
-                    diakok.Add(new Diak(sor));
+                    Diak ujDiak = new Diak(sor);
+                    if (!diakok.Any(x => x.OM_Azonosito == ujDiak.OM_Azonosito))
+                    {
+                        diakok.Add(ujDiak);
+                    }
                 }
                 dgFelvetelizok.ItemsSource = diakok;
             }
@@ -52,7 +56,7 @@ namespace Felvetelizok
                 StreamWriter mentes = new StreamWriter(sfd.FileName);
                 foreach (var item in diakok)
                 {
-                    mentes.WriteLine(item.ToString());
+                    mentes.WriteLine(item.CSVSortAdVissza());
                 }
                 mentes.Close();
                 MessageBox.Show("sikeres mentés");
@@ -61,9 +65,18 @@ namespace Felvetelizok
 
         private void btnTorles_Click(object sender, RoutedEventArgs e)
         {
-            if (dgFelvetelizok.SelectedIndex > 0)
+            if (dgFelvetelizok.SelectedItems.Count > 0)
             {
-                diakok.RemoveAt(dgFelvetelizok.SelectedIndex);
+                List<Diak> toroltDiakok = new();
+
+                foreach (var sor in dgFelvetelizok.SelectedItems)
+                {
+                    toroltDiakok.Add((Diak)sor);
+                } 
+                foreach (var sor in toroltDiakok)
+                { 
+                    diakok.Remove(sor);
+                }
                 MessageBox.Show("Sikeres törlés");
             }
             else
@@ -75,7 +88,8 @@ namespace Felvetelizok
         private void btnFelvesz_Click(object sender, RoutedEventArgs e)
         {
             Diak ujDiak;
-            Felvetel felvetel = new Felvetel();
+            List<string> azonositok = diakok.Select(x => x.OM_Azonosito).ToList();
+            Felvetel felvetel = new Felvetel(azonositok);
             felvetel.ShowDialog();
             if (felvetel.UjDiak != null)
             {
