@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Felvetelizok"
         mc:Ignorable="d"
         Title="Kifir
-" Height="700" Width="1100" MinWidth="1050" MinHeight="300">
+" Height="700" Width="1100" MinWidth="1060" MinHeight="300">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
@@ -19,6 +19,7 @@
                 <Button x:Name="btnExport" Content="Exportálás" Width="130" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnExport_Click"/>
                 <Button x:Name="btnTorles" Content="Törlés" Width="130" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnTorles_Click"/>
                 <Button x:Name="btnFelvesz" Content="Felvétel" Width="130" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnFelvesz_Click"/>
+                <Button x:Name="btnModosit" Content="Módosítás" Width="130" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnModosit_Click"/>
             </StackPanel>
         </Grid>
 </Window>

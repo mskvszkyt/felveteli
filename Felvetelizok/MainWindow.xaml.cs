@@ -15,6 +15,10 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography.X509Certificates;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Encodings.Web;
 
 namespace Felvetelizok
 {
@@ -22,12 +26,7 @@ namespace Felvetelizok
     {
         ObservableCollection<Diak> diakok = new ObservableCollection<Diak>();
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
-        private void btnImport_Click(object sender, RoutedEventArgs e)
+        public void Betoltes()
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "CSV files (*.csv)|*.csv";
@@ -37,11 +36,39 @@ namespace Felvetelizok
                 {
                     Diak ujDiak = new Diak(sor);
                     if (!diakok.Any(x => x.OM_Azonosito == ujDiak.OM_Azonosito))
-                    {
                         diakok.Add(ujDiak);
-                    }
+                    else
+                        MessageBox.Show("Már van feltöltve ilyen OM azonosítójú diák az adatokhoz");
                 }
-                dgFelvetelizok.ItemsSource = diakok;
+            }
+        }
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            dgFelvetelizok.ItemsSource = diakok;
+        }
+
+        private void btnImport_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (diakok.Count == 0)
+            {
+                Betoltes();
+            }
+            else
+            {
+                if (MessageBox.Show("Fölülírod a meglévő adatokat?", "Fölülírás", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                {
+                    //do no
+                    Betoltes();
+                }
+                else
+                {
+                    //do yes
+                    diakok.Clear();
+                    Betoltes();
+                }
             }
         }
 
@@ -49,17 +76,39 @@ namespace Felvetelizok
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.DefaultExt = "csv";
-            sfd.Filter = "CSV fájl (*.csv) | *.csv";
+            sfd.Filter = "CSV fájl (*.csv) | *.csv| JSON fájl (*.json) | *.json";
             sfd.Title = "Add meg a fájl nevét";
             if (sfd.ShowDialog() == true)
             {
-                StreamWriter mentes = new StreamWriter(sfd.FileName);
-                foreach (var item in diakok)
+                var extension = System.IO.Path.GetExtension(sfd.FileName);
+
+                switch (extension.ToLower())
                 {
-                    mentes.WriteLine(item.CSVSortAdVissza());
+                    
+                    case ".json":
+                        // ToDo: Save as JSON
+                        JsonSerializerOptions options = new JsonSerializerOptions();
+                        options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+                        options.WriteIndented = true;
+
+                        string json = JsonSerializer.Serialize(diakok);
+                        File.WriteAllText(sfd.FileName, json);
+                        MessageBox.Show("sikeres mentés");
+                        break;
+                    case ".csv":
+                        // ToDo: Save as CSV
+                        StreamWriter mentes = new StreamWriter(sfd.FileName);
+                        foreach (var item in diakok)
+                        {
+                            mentes.WriteLine(item.CSVSortAdVissza());
+                        }
+                        mentes.Close();
+                        MessageBox.Show("sikeres mentés");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(extension);
                 }
-                mentes.Close();
-                MessageBox.Show("sikeres mentés");
+                
             }
         }
 
@@ -72,9 +121,9 @@ namespace Felvetelizok
                 foreach (var sor in dgFelvetelizok.SelectedItems)
                 {
                     toroltDiakok.Add((Diak)sor);
-                } 
+                }
                 foreach (var sor in toroltDiakok)
-                { 
+                {
                     diakok.Remove(sor);
                 }
                 MessageBox.Show("Sikeres törlés");
@@ -95,8 +144,19 @@ namespace Felvetelizok
             {
                 ujDiak = new Diak(felvetel.UjDiak);
                 diakok.Add(ujDiak);
-                dgFelvetelizok.ItemsSource = diakok;
             }
+        }
+
+        private void btnModosit_Click(object sender, RoutedEventArgs e)
+        {
+            //if (dgFelvetelizok.SelectedItems.Count > 0)
+            //{
+            //    List<string> azonositok = diakok.Select(x => x.OM_Azonosito).ToList();
+            //    Felvetel modositas = new Felvetel(azonositok, dgFelvetelizok.SelectedItems[0] as Diak);
+            //    modositas.ShowDialog();
+                
+            //}
+
         }
     }
 }

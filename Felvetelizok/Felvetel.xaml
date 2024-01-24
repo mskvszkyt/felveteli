@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title="Felvetel" Height="450" Width="800">
 
-    <Grid>
-    <Viewbox Stretch="Uniform">
+    <Viewbox>
         <Grid Background="DarkCyan" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -91,5 +90,4 @@
             <Button x:Name="btn_hozzaad" Grid.Row="3" Grid.ColumnSpan="2" Margin="30" Content="Hozzáadás" FontSize="20" Click="btn_hozzaad_Click" Background="Transparent" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
         </Grid> 
     </Viewbox>
-    </Grid>
 </Window>

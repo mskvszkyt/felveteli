@@ -14,12 +14,10 @@ using System.Windows.Shapes;
 
 namespace Felvetelizok
 {
-    /// <summary>
-    /// Interaction logic for Felvetel.xaml
-    /// </summary>
     public partial class Felvetel : Window
     {
         public string UjDiak { get; set; }
+
         List<string> azonositok = new();
         public Felvetel(List<string> adat)
         {
@@ -54,7 +52,7 @@ namespace Felvetelizok
             }
             else if (tb_neve.Text.Split(' ').Length == 1)
             {
-                MessageBox.Show("A névben kéne lenni legalább egy szóköznek");
+                MessageBox.Show("A névben lennie kell legalább egy szóköznek");
             }
             else{
                 UjDiak = $"{tb_az.Text};{tb_neve.Text};{tb_email.Text};{dp_szuletes.Text};{tb_ertCim.Text};{sli_matek.Value};{sli_magyar.Value}";
