@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,19 +17,34 @@ namespace Felvetelizok
 {
     public partial class Felvetel : Window
     {
-        public string UjDiak { get; set; }
+        public string DiakVissza { get; set; }
+        List<string> azonositok = new List<string>();
 
-        List<string> azonositok = new();
+        // Constructor for adding a new entry
         public Felvetel(List<string> adat)
         {
             InitializeComponent();
             azonositok = adat;
+        }
 
+        // Constructor for modifying an existing entry
+        public Felvetel(List<string> adat, Diak diak) : this(adat)
+        {
+            azonositok.Remove(diak.OM_Azonosito);
+            tb_az.Text = diak.OM_Azonosito;
+            tb_az.IsReadOnly = true;
+            tb_neve.Text = diak.Neve;
+            dp_szuletes.Text = Convert.ToString(diak.SzuletesiDatum);
+            tb_ertCim.Text = diak.ErtesitesiCime;
+            tb_email.Text = diak.Email;
+            sli_matek.Value =  diak.Matematika;
+            sli_magyar.Value = diak.Magyar;
+            btn_hozzaad.Content = "Módosít";
         }
 
         private void btn_hozzaad_Click(object sender, RoutedEventArgs e)
         { 
-            if(tb_az.Text == "" || tb_neve.Text == "" || dp_szuletes.Text == "" || tb_ertCim.Text == "")
+            if(tb_az.Text == "" || tb_neve.Text == "" || dp_szuletes.Text == "" || tb_ertCim.Text == "" || tb_email.Text == "")
             {
                 string hianyzoMezok = "";
 
@@ -36,7 +52,7 @@ namespace Felvetelizok
                 hianyzoMezok += tb_az.Text == "" ? " Azonosító," : "";
                 hianyzoMezok += tb_neve.Text == "" ? " Név," : "";
                 hianyzoMezok += tb_ertCim.Text == "" ? " Értesítési Cím," : "";
-                hianyzoMezok += tb_email.Text == "" ? " Értesítési Cím," : "";
+                hianyzoMezok += tb_email.Text == "" ? " Email Cím," : "";
                 hianyzoMezok += dp_szuletes.Text == "" ? " Születési Dátum," : "";
 
 
@@ -54,8 +70,9 @@ namespace Felvetelizok
             {
                 MessageBox.Show("A névben lennie kell legalább egy szóköznek");
             }
-            else{
-                UjDiak = $"{tb_az.Text};{tb_neve.Text};{tb_email.Text};{dp_szuletes.Text};{tb_ertCim.Text};{sli_matek.Value};{sli_magyar.Value}";
+            else{ 
+                DiakVissza = $"{tb_az.Text};{tb_neve.Text};{tb_email.Text};{dp_szuletes.Text};{tb_ertCim.Text};{sli_matek.Value};{sli_magyar.Value}";
+                
                 Close();
             }
         }

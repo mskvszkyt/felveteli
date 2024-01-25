@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Felvetelizok
 {
-    class Diak : IFelvetelizo
+    public class Diak : IFelvetelizo
     {
         string om_Azonosito;
         string neve;

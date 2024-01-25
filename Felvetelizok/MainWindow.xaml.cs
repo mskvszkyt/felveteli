@@ -140,22 +140,29 @@ namespace Felvetelizok
             List<string> azonositok = diakok.Select(x => x.OM_Azonosito).ToList();
             Felvetel felvetel = new Felvetel(azonositok);
             felvetel.ShowDialog();
-            if (felvetel.UjDiak != null)
+            if (felvetel.DiakVissza != null)
             {
-                ujDiak = new Diak(felvetel.UjDiak);
+                ujDiak = new Diak(felvetel.DiakVissza);
                 diakok.Add(ujDiak);
             }
         }
 
         private void btnModosit_Click(object sender, RoutedEventArgs e)
         {
-            //if (dgFelvetelizok.SelectedItems.Count > 0)
-            //{
-            //    List<string> azonositok = diakok.Select(x => x.OM_Azonosito).ToList();
-            //    Felvetel modositas = new Felvetel(azonositok, dgFelvetelizok.SelectedItems[0] as Diak);
-            //    modositas.ShowDialog();
-                
-            //}
+            if (dgFelvetelizok.SelectedItems.Count > 0)
+            {
+                Diak ujDiak;
+                List<string> azonositok = diakok.Select(x => x.OM_Azonosito).ToList();
+                Felvetel modositas = new Felvetel(azonositok, dgFelvetelizok.SelectedItems[0] as Diak);
+                modositas.ShowDialog();
+                if (modositas.DiakVissza != null)
+                {
+                    diakok.Remove((Diak)dgFelvetelizok.SelectedItems[0]);
+                    ujDiak = new Diak(modositas.DiakVissza); 
+                    diakok.Add(ujDiak);
+                }
+
+            }
 
         }
     }
