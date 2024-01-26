@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,6 +41,8 @@ namespace Felvetelizok
             sli_matek.Value =  diak.Matematika;
             sli_magyar.Value = diak.Magyar;
             btn_hozzaad.Content = "Módosít";
+
+            tb_az.IsEnabled = false;
         }
 
         private void btn_hozzaad_Click(object sender, RoutedEventArgs e)
@@ -79,10 +82,9 @@ namespace Felvetelizok
 
         private void tb_az_TextChanged(object sender, TextCompositionEventArgs e)
         {
-            if (!char.IsDigit(e.Text, e.Text.Length - 1))
-            {
-                e.Handled = true; 
-            }
+            //TODO: ' ' kezelése
+            Regex regex = new Regex("[^0-9]");
+            e.Handled = regex.IsMatch(e.Text);
         }
          
     }
