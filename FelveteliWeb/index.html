@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felvételi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="LoadData()">
+    <header>
+        <div class="filter-container">
+            <h2>Pontszám minimum:</h2>
+            <input type="number" value="0" max="100" min="0" class="filter-input" id="filter-id">
+            <button class="filter-button" onclick="SetLimit()">Listáz</button>
+        </div>
+    </header>
+    <main>
+        <div class="table-container">
+            <table class="main-table">
+                <thead>
+                    <tr>
+                        <th onclick="SetOrder('id')">OM azonosító</th>
+                        <th onclick="SetOrder('nev')">Név</th>
+                        <th onclick="SetOrder('matek')">Matematika</th>
+                        <th onclick="SetOrder('magyar')">Magyar</th>
+                        <th onclick="SetOrder('osszes')">Összes</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                                      
+                </tbody>    
+            </table>
+        </div>
+        <div class="user-data-container"> 
+            <div class="search-header">
+                <input type="number" list="ids" placeholder="Keresés.." id="searchInput" oninput="HandleInput()" maxlength="11" class="search">
+                <datalist id="ids"></datalist>
+                <button class="search-student" onclick="SearchUser()">🔎︎</button>
+                <button class="add-student" onclick="SearchUser()">+</button>
+            </div>
+            <div class="student-data-container student-page" id="id-found-page">
+                
+            </div>
+            <div class="student-not-found student-page" id="id-not-found-page">
+                <h1>?</h1>
+                <p>Diák nem található...</p>
+            </div>
+            <div class="student-creator student-page" id="create-student-page">
+
+            </div>
+        </div>
+    </main>
+</body>
+<script src="diak.js"></script>
+<script src="main.js"></script>
+</html>
