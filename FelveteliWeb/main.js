@@ -18,19 +18,28 @@ let order = {
 let limit = 0
 
 const SetOrder = (val) => {
+    let element = document.getElementById(val) 
     if(order.base == val){
-        order.desc = !order.desc
+        order.desc = !order.desc 
+        let replacedData = element.innerHTML.replace("▼","")
+        replacedData = replacedData.replace("▲","")
+        element.innerHTML = replacedData
+        
     }else{
+        let lastSelected = document.getElementById(order.base)
+        let replacedData = lastSelected.innerHTML.replace(order.desc ? "▼" : "▲", "")
+        lastSelected.innerHTML = replacedData
         order.base = val
+        order.desc = true
     }
+    element.innerHTML += order.desc ? "▼" : "▲"
     LoadData()
 }
 
 const OrderData = () =>{
     data.sort((a, b) => {
         const prop = order.base;
-        const desc = order.desc;
-        
+        const desc = order.desc; 
         const compareValues = (valueA, valueB) => {
             return desc ? valueA - valueB : valueB - valueA;
         };
@@ -87,6 +96,7 @@ const LoadData = () => {
 }
 
 const SearchUser = () => {
+    
     const searchInput = document.getElementById("searchInput").value
     pgUserAdd.style.display = "none"
     pgNotFound.style.display = "none"
@@ -119,3 +129,4 @@ const HandleInput = () => {
         options.appendChild(option)
     })
 }
+ 
