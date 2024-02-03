@@ -1,10 +1,9 @@
 const data = [
-    new Diak("11234567890","Joe Biden",5,50),
-    new Diak("32334567890","Kama Kálmán",25,40),
-    new Diak("11238754890","Nem Joe Biden",12,24),
-    new Diak("11234568760","Gipsz Jakab",12,32),
-    new Diak("11276523440","Fartin' Martin",1,1),
-    new Diak("98657574765","Lapát János",5,1),
+    new Diak("98657574765", "Gipsz János", 50, 1),
+    new Diak("12345678901", "Kovács Eszter", 43, 3),
+    new Diak("98765432109", "Nagy Gábor", 2, 44),
+    new Diak("55555555555", "Varga Anna", 13, 5),
+    new Diak("77777777777", "Kis Péter", 3, 22),
 ]
 
 const pgNotFound = document.getElementById("id-not-found-page")
