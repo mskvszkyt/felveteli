@@ -64,7 +64,14 @@ const OrderData = () =>{
 }
 
 const SetLimit = () => {
-    limit = document.getElementById("filter-id").value
+    let search = document.getElementById("filter-id").value;
+    if(search > 100){
+        document.getElementById("filter-id").value = 100
+    }else if(search < 0){
+        document.getElementById("filter-id").value = 0
+    }
+    
+    limit = search
     LoadData()
 }
 
