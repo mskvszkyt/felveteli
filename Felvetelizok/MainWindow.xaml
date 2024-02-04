@@ -15,11 +15,13 @@
             <DataGrid x:Name="dgFelvetelizok" IsReadOnly="True" Margin="10"/>
         <Border Grid.Column="1" Background="DarkCyan"/>
         <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" Background="Transparent">
-                <Button x:Name="btnImport" Content="Importálás" Width="130" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnImport_Click"/>
-                <Button x:Name="btnExport" Content="Exportálás" Width="130" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnExport_Click"/>
-                <Button x:Name="btnTorles" Content="Törlés" Width="130" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnTorles_Click"/>
-                <Button x:Name="btnFelvesz" Content="Felvétel" Width="130" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnFelvesz_Click"/>
-                <Button x:Name="btnModosit" Content="Módosítás" Width="130" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnModosit_Click"/>
-            </StackPanel>
+            <Button x:Name="btnImport" Content="Importálás" Width="175" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnImport_Click"/>
+            <Button x:Name="btnTorles" Content="Törlés" Width="175" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnTorles_Click"/>
+            <Button x:Name="btnExport" Content="Exportálás" Width="175" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnExport_Click"/>
+            <Button x:Name="btnFelvesz" Content="Felvétel" Width="175" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnFelvesz_Click"/>
+            <Button x:Name="btnModosit" Content="Módosítás" Width="175" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnModosit_Click"/>
+            <Button x:Name="btnBetolt" Content="Betöltés adatbázisból" Width="175" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnBetolt_Click" />
+            <Button x:Name="btnFeltolt" Content="Feltöltés adatbázisba" Width="175" Height="30" FontSize="15" FontWeight="Bold" Margin="10" Click="btnFeltolt_Click" />
+        </StackPanel>
         </Grid>
 </Window>

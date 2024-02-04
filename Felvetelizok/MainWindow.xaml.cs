@@ -19,12 +19,16 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Encodings.Web;
+using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 
 namespace Felvetelizok
 {
     public partial class MainWindow : Window
     {
         ObservableCollection<Diak> diakok = new ObservableCollection<Diak>();
+        public string connectionString = "datasource=127.0.0.1;port=3310;username=root;password=;database=minikifir;";
+        public MySqlConnection connection;
 
         public void Betoltes()
         {
@@ -164,6 +168,74 @@ namespace Felvetelizok
 
             }
 
+        }
+
+        private void btnBetolt_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                connection = new MySqlConnection(connectionString);
+                connection.Open();
+                string query = "SELECT OM_azon,nev,ertesitesi_cim,szul_datum,elerhetoseg,pt_matek,pt_magyar FROM felvetelizok";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string OM_azon = reader.GetString(0);
+                    string nev = reader.GetString(1);
+                    string ertesitesi_cim = reader.GetString(2);
+                    DateTime szul_datum = reader.GetDateTime(3);
+                    string elerhetoseg = reader.GetString(4);
+                    int matek = reader.GetInt32(5);
+                    int magyar = reader.GetInt32(6);
+
+                    string csvSor = $"{OM_azon};{nev};{ertesitesi_cim};{szul_datum};{elerhetoseg};{matek};{matek}";
+                    MessageBox.Show(csvSor);
+                    Diak uj = new(csvSor);
+                    diakok.Add(uj);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnFeltolt_Click(object sender, RoutedEventArgs e)
+        {
+            if(diakok.Count > 0)
+            {
+            try
+            {
+                connection = new MySqlConnection(connectionString);
+                connection.Open();
+
+                string queryText = $"DELETE FROM felvetelizok";
+                using (MySqlCommand command = new MySqlCommand(queryText, connection))
+                {
+                    command.ExecuteNonQuery();
+
+                                
+                }
+
+                foreach (var item in diakok)
+                {
+                    string newQueryText = $"INSERT INTO felvetelizok (OM_azon, nev, ertesitesi_cim, szul_datum, elerhetoseg, pt_matek, pt_magyar) VALUES ('{item.OM_Azonosito}', '{item.Neve}', '{item.ErtesitesiCime}', '{item.SzuletesiDatum}', '{item.Email}', {item.Matematika}, {item.Magyar})";
+
+                    MySqlCommand command = new MySqlCommand(newQueryText, connection);
+                    command.ExecuteNonQuery();
+
+
+                }
+                    connection.Close();
+                
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            }
         }
     }
 }

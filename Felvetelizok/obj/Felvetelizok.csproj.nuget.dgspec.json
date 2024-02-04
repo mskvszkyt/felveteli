@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Attila\\source\\repos\\felveteli\\Felvetelizok\\Felvetelizok.csproj": {}
+    "C:\\Users\\Attila\\Source\\Repos\\mskvszkyt\\felveteli\\Felvetelizok\\Felvetelizok.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Attila\\source\\repos\\felveteli\\Felvetelizok\\Felvetelizok.csproj": {
+    "C:\\Users\\Attila\\Source\\Repos\\mskvszkyt\\felveteli\\Felvetelizok\\Felvetelizok.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Attila\\source\\repos\\felveteli\\Felvetelizok\\Felvetelizok.csproj",
+        "projectUniqueName": "C:\\Users\\Attila\\Source\\Repos\\mskvszkyt\\felveteli\\Felvetelizok\\Felvetelizok.csproj",
         "projectName": "Felvetelizok",
-        "projectPath": "C:\\Users\\Attila\\source\\repos\\felveteli\\Felvetelizok\\Felvetelizok.csproj",
+        "projectPath": "C:\\Users\\Attila\\Source\\Repos\\mskvszkyt\\felveteli\\Felvetelizok\\Felvetelizok.csproj",
         "packagesPath": "C:\\Users\\Attila\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Attila\\source\\repos\\felveteli\\Felvetelizok\\obj\\",
+        "outputPath": "C:\\Users\\Attila\\Source\\Repos\\mskvszkyt\\felveteli\\Felvetelizok\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Attila\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.3.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
